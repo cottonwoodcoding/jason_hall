@@ -1,0 +1,22 @@
+- if admin_signed_in?
+  .add-partner.center
+    = link_to new_partner_path, class: 'white' do
+      = fa_icon 'plus', text: 'Add New Partner'
+.partners
+  .partner-types.pull-left
+    %h4.white Partner Categories
+    %hr
+    - if @partner_types
+      - first = true
+      - @partner_types.each do |t|
+        - underline = first ? 'underline' : 'no-style'
+        .partner-link
+          %a.white{href: '#', 'data-id' => t.id, class: underline}
+            = t.name
+        - first = false
+  .partners-sub
+    - if @partner_types.any?
+      = render partial: 'partners/partner_list', locals: { partners: @partner_types.first.partners }
+
+
+

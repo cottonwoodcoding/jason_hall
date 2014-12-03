@@ -1,0 +1,52 @@
+- if admin_signed_in?
+  .add-blog-post.center
+    = link_to blog_new_path, class: 'center complimentary' do
+      = fa_icon "plus", text: "Add New Post"
+.blog-content.container-fluid
+  .row
+    .archive-container.col-md-2
+      .post-container
+        - first = true
+        - @articles.each do |month, posts|
+          - date = month.gsub(' ', '').downcase
+          - open = first ? 'in' : ''
+          - caret = first ? 'fa-caret-down' : 'fa-caret-right'
+          .panel-group.article-group{id: "accordion_#{date}"}
+            .panel.panel-default.articles-panel{'data-toggle' => 'collapse', 'data-parent' => "accordion_#{date}", href: "#collapse#{date}"}
+              %h4.blog-panel-title-panel-title
+                %a.complimentary{'data-toggle' => 'collapse', 'data-parent' => "accordion_#{date}", href: "#collapse#{date}"}
+                  = month
+                %i.caret-toggle.fa{class: caret}
+            .blog-panel-collapse.panel-collapse.collapse{id: "collapse#{date}", class: open}
+              .panel-body
+                %ul
+                  - posts.each do |p|
+                    %li
+                      .post{'data-post-id' => p[:id]}
+                        = link_to blog_index_path(post: p[:id]), class: 'complimentary' do
+                          = p[:title]
+    .blog-container.col-md-7.extra-bright-gradient
+      - if admin_signed_in?
+        = link_to blog_edit_path(post: @post), method: :post, class: 'black' do
+          = fa_icon 'pencil', text: 'Edit Post', class: 'black'
+        = link_to blog_delete_post_path(post_id: @post['id']), method: :post, class: 'black pull-right' do
+          = fa_icon 'trash', class: 'black'
+      = render partial: 'post', locals: { post: @post }
+    .comments-container.col-md-3
+      %h4.complimentary.center Comments
+      %hr
+      %a#new_comment.white{href: '#'}
+        = fa_icon 'plus', text: 'Add Comment', class: 'white'
+      %form#new_comment_form.hidden{role: 'form', action: '/blog/new_comment', method: 'POST'}
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        .form-group
+          %label.white{for: 'user_name'} Name:
+          %input#user_name.form-control{type: 'text', name: 'name'}
+        .form-group
+          %label.white
+            %input#anon.white{type: 'checkbox'} Post Anonymously?
+        .form-group
+          %label.white{for: 'user_comment'} Comment:
+          %textarea#user_comment.form-control{rows: 3, name: 'comment'}
+        %button.btn.gradient.full-width{type: 'submit'} Comment
+      .comments

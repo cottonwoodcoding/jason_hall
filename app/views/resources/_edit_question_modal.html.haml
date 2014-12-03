@@ -1,0 +1,21 @@
+#edit_question_modal.modal.fade{role: 'dialog', 'aria-labelledby' => 'edit_question_label', 'aria-hidden' => 'true'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: 'button', 'data-dismiss' => 'modal'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h4 Edit Question
+      .modal-body
+        #edit_question_modal_error
+        %form#edit_question_form{role: 'form', name: 'edit_question', action: 'edit_question', method: 'post'}
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          %input#edit_question_id.hidden{name: 'id'}
+          .form-group
+            %label.control-label{'for' => 'edit_question'}  Question
+            %input#edit_question.form-control{name: 'edit_question', type: 'text', placeholder: 'i.e. How do I apply?'}
+          .form-group
+            %label.control-label{'for' => 'edit_answer'}  Answer
+            %textarea#edit_answer.form-control{name: 'description', rows: '3'}
+          .form-group
+            %button.btn.btn-default{'data-dismiss' => 'modal'} Close
+            %button.btn.btn-primary{type: 'submit'} Save

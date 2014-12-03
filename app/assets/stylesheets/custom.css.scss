@@ -1,0 +1,208 @@
+$main-color: #890F0F;
+$accent-1: #620000;
+$accent-2: #89460F;
+$accent-3: #AB652B;
+$accent-4: #622C00;
+$accent-5: #3A1A00;
+$complimentary: white;
+
+//Theme colors
+.color-main-bg {
+  background-color: $main-color !important;
+}
+
+.accent-1-bg {
+  background-color: $accent-1 !important;
+}
+
+.accent-2-bg {
+  background-color: $accent-2 !important;
+}
+
+.accent-3-bg {
+  background-color: $accent-3 !important;
+}
+
+.accent-4-bg {
+  background-color: $accent-4 !important;
+}
+
+.complimentary-bg {
+  background-color: $complimentary !important;
+}
+
+.color-main {
+  color: $main-color !important;
+}
+
+.accent-1 {
+  color: $accent-1 !important;
+}
+
+.accent-2 {
+  color: $accent-2 !important;
+}
+
+.accent-3 {
+  color: $accent-3 !important;
+}
+
+.accent-4 {
+  color: $accent-4 !important;
+}
+
+.complimentary {
+  color: $complimentary !important;
+}
+
+.navbar-nav > li > a {
+  color: white !important;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.navbar-nav > li > a:hover {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+html, body {
+  min-height: 100%;
+  width: 100%;
+}
+
+.shadow {
+  text-shadow: 2px 2px 8px black;
+}
+body {
+  background: -webkit-linear-gradient(left top, red, $main-color, $accent-5); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, red, $main-color, $accent-5); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, red, $main-color, $accent-5); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, red, $main-color, $accent-5); /* Standard syntax */
+}
+
+.center {
+  text-align: center;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: red;
+}
+
+.white {
+  color: white;
+}
+
+.black {
+  color: black;
+}
+
+.silver {
+  color: silver;
+}
+
+.inactive {
+  color: gray;
+  cursor: not-allowed !important;
+}
+
+.right-20 {
+  margin-right: 20px;
+}
+
+.left-50 {
+  margin-left: 50%;
+}
+
+.top-10-bottom-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.pointer {
+  cursor: pointer; cursor: hand;
+}
+
+.navbar {
+  background-color: transparent !important;
+  margin-bottom: 0px !important;
+  border: 0px;
+}
+
+#apply_button {
+  font-size: 20px;
+  color: white;
+  margin-left: 5px;
+}
+
+.gradient {
+  color: white;
+  background: -webkit-linear-gradient(left top, red 50%, $main-color, $accent-5); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, red 50%, $main-color, $accent-5); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, red 50%, $main-color, $accent-5); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, red 50%, $main-color, $accent-5); /* Standard syntax */
+}
+
+.bright-gradient {
+  background: -webkit-linear-gradient(left top, white 10%, red, $main-color); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, white 10%, red, $main-color); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, white 10%, red, $main-color); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, white 10%, red, $main-color); /* Standard syntax */
+}
+
+.extra-bright-gradient {
+  background: -webkit-linear-gradient(left top, white 60%, $accent-5); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, white 60%,  $accent-5); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, white 60%,$accent-5); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, white 60%,  $accent-5); /* Standard syntax */
+}
+
+.forum {
+  font-family: 'trajanus';
+  letter-spacing: 4px;
+  font-size: 40px;
+}
+
+.sub-logo {
+  font-size: 12px;
+  letter-spacing: 12px;
+  font-family: 'trajanus';
+  margin-top: -13px;
+  color: $complimentary;
+  margin-left: 25%;
+}
+
+#logo {
+  margin-top: 3%;
+}
+
+#logo:hover {
+  text-decoration: none !important;
+}
+
+.nav-item {
+  font-family: 'janus';
+}
+
+.social-nav {
+  padding-right: 10px;
+  padding-left: 10px;
+  border-right: 1px solid white;
+}
+
+.nav-header {
+  padding-left: 60%;
+  padding-top: 1%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.underline {
+  text-decoration: underline;
+}

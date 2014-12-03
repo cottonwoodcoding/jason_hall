@@ -1,0 +1,17 @@
+- if comments.present?
+  - comments.each do |c|
+    .main-comment-container
+      .comment.accent-5
+        .inner-comment
+          %h5.accent-5
+            = c.comment
+          %em
+            = "-#{c.name}"
+      - if admin_signed_in?
+        .blog-controls.pull-right{'data-comment-id' => c.id}
+          - if c.status == 'pending'
+            %a.approve-comment{href: '#'}
+              = fa_icon 'check', class: 'white'
+          %a.remove-comment{href: '#'}
+            = fa_icon 'trash', class: 'white'
+        .clearfix

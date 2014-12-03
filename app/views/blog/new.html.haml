@@ -1,0 +1,13 @@
+= tinymce
+%h2 Create new blog post
+.post-container
+  %form#new_post_form.form-horizontal{role: 'form', method: 'POST', action: '/blog/new_post'}
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+    .form-group
+      %label.control-lable.font-n{for: 'post_title'} Title
+      %input#post_title.form-control{name: 'title', type: 'text', 'required' => 'true'}
+    .form-group
+      %textarea.tinymce.full-width.tinymce{rows: 20, name: 'post_body'}
+    .form-group
+      .btn-container
+        %button#new_post_button.btn.btn-primary.pull-right.font-l.full-width.gradient{type: 'submit'} Submit

@@ -1,0 +1,28 @@
+- if admin_signed_in?
+  .add-process.center.top-10-bottom-10
+    %a#add_process.complimentary{href: '#'}
+      = fa_icon 'plus', text: 'Add new step'
+    .new-process
+      %form#new_process_form{role: 'form', name: 'new_process', action: 'new_process', method: 'post'}
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        .form-group
+          %label.control-label{'for' => 'step_name'}  Step Title
+          %input#step_name.form-control{name: 'step_name', type: 'text', placeholder: 'i.e. Pre-Qualification'}
+        .form-group
+          %label.control-label{'for' => 'step_description'}  Description
+          %textarea#step_description.form-control{name: 'description', rows: '3'}
+        .form-group
+          %label.control-label{'for' => 'step_order'} Step #:
+          %select#step_order.form-control{name: 'step_order'}
+            - count = @steps.blank? ? 0 : @steps.count
+            - if count == 0
+              %option 1
+            - else
+              - 1.upto(count + 1) do |i|
+                %option
+                  = i
+        .form-group
+          %button#add_process_button.add-button.btn.gradient{type: 'submit'} Save
+.loan-process
+  = render partial: '/resources/loan_process_accordion', locals: { steps: @steps }
+= render partial: '/resources/edit_process_modal'

@@ -1,0 +1,14 @@
+- post = params['post']
+%h2 Edit blog post
+.post-container
+  %form#edit_post_form.form-horizontal{role: 'form', method: 'POST', action: '/blog/edit_post'}
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+    %input.hidden{name: 'blog_id', value: post['id']}
+    .form-group
+      %label.control-lable.font-n{for: 'post_title'} Title
+      %input#post_title.form-control{name: 'title', type: 'text', 'required' => 'true', value: post['title']}
+    .form-group
+      %textarea#edit_blog_editor.edit-text-area.tinymce.full-width.tinymce{rows: 20, name: 'edit_body', value: post['body']}
+    .form-group
+      .btn-container
+        %button#edit_post_button.btn.btn-primary.pull-right.font-l.full-width.gradient{type: 'submit'} Submit

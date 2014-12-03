@@ -1,0 +1,28 @@
+- if admin_signed_in?
+  .add-question.center.top-10-bottom-10
+    %a#add_question.complimentary{href: '#'}
+      = fa_icon 'plus', text: 'Add Question'
+    .new-question
+      %form#new_question_form{role: 'form', name: 'new_question', action: 'new_question', method: 'post'}
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        .form-group
+          %label.control-label{'for' => 'question'}  Question
+          %input#question.form-control{name: 'question', type: 'text', placeholder: 'i.e. How do I apply?'}
+        .form-group
+          %label.control-label{'for' => 'answer'}  Answer
+          %textarea#answer.form-control{name: 'answer', rows: '3'}
+        .form-group
+          %label.control-label{'for' => 'question_order'} Question #:
+          %select#question_order.form-control{name: 'question_order'}
+            - count = @questions.blank? ? 0 : @questions.count
+            - if count == 0
+              %option 1
+            - else
+              - 1.upto(count + 1) do |i|
+                %option
+                  = i
+        .form-group
+          %button#add_question_button.add-button.btn.gradient{type: 'submit'} Save
+.questions
+  = render partial: '/resources/faq_accordion', locals: { questions: @questions }
+= render partial: '/resources/edit_question_modal'

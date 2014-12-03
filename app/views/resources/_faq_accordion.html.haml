@@ -1,0 +1,31 @@
+#faq_accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+  - questions.each_with_index do |p, i|
+    - id = "faq_#{p.id}"
+    - order = p.question_number
+    - collapse = "#{id}_collapse"
+    - display = i == 0 ? 'in' : 'out'
+    .panel.panel-default
+      .panel-heading.question-panel-heading{:role => "tab", id: id, 'data-order' => order, 'data-toggle' => 'collapse', 'data-parent' => '#faq_accordion', :href => "##{collapse}"}
+        %h4.panel-title
+          %a.question-text{"aria-controls" => collapse, "aria-expanded" => "true", "data-parent" => "#faq_accordion", "data-toggle" => "collapse", :href => "##{collapse}"}
+            = p.question
+          - if admin_signed_in?
+            .admin-control.pull-right
+              - if order == 1
+                - up_class = 'inactive'
+              - else
+                - up_class = 'complimentary'
+              - if order == questions.count
+                - down_class = 'inactive'
+              - else
+                - down_class = 'complimentary'
+              = fa_icon 'arrow-up', class: "right-20 pointer question-up #{up_class}"
+              = fa_icon 'arrow-down', class: "right-20 pointer question-down #{down_class}"
+              = link_to '#edit_question_modal', class: 'edit-question', 'data-toggle' => 'modal' do
+                = fa_icon 'edit', class: 'white right-20 pointer'
+              = link_to(delete_question_path(id: p.id), data: { confirm: "Are you sure you want to delete: #{p.question}" },class: 'delete-question', method: :delete) do
+                = fa_icon 'trash', class: 'white right-20 pointer'
+      .panel-collapse.collapse{"aria-labelledby" => id, :role => "tabpanel", id: collapse, class: display}
+        .panel-body
+          .panel-text
+            = p.answer

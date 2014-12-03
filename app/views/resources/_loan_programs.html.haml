@@ -1,0 +1,17 @@
+- if admin_signed_in?
+  .add-program.center.top-10-bottom-10
+    %a#add_program.add-button.complimentary{href: '#'}
+      = fa_icon 'plus', text: 'Add New Program'
+    .new-program
+      %form#new_program_form{role: 'form', name: 'new_program', action: 'new_program', method: 'post'}
+        = hidden_field_tag :authenticity_token, form_authenticity_token
+        .form-group
+          %label.control-label{'for' => 'loan_type'}  Loan Type
+          %input#loan_type.form-control{name: 'loan_type', type: 'text', placeholder: 'i.e. Conventional, FHA, VA'}
+        .form-group
+          %label.control-label{'for' => 'loan_description'}  Description
+          %textarea#loan_description.form-control{name: 'description', rows: '3'}
+        .form-group
+          %button#add_new_button.add-button.btn.gradient{type: 'submit'} Save
+= render partial: '/resources/loan_program_accordion', locals: { programs: @programs }
+= render partial: '/resources/edit_program_modal'

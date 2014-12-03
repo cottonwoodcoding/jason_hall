@@ -1,0 +1,21 @@
+#edit_process_modal.modal.fade{role: 'dialog', 'aria-labelledby' => 'edit_process_label', 'aria-hidden' => 'true'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: 'button', 'data-dismiss' => 'modal'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h4 Edit Step
+      .modal-body
+        #edit_process_modal_error
+        %form#edit_process_form{role: 'form', name: 'edit_process', action: 'edit_process', method: 'post'}
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          %input#edit_process_id.hidden{name: 'id'}
+          .form-group
+            %label.control-label{'for' => 'edit_step_name'}  Step Name
+            %input#edit_step_name.form-control{name: 'edit_step_name', type: 'text', placeholder: 'i.e. Pre-Qualification'}
+          .form-group
+            %label.control-label{'for' => 'step_description'}  Description
+            %textarea#edit_step_description.form-control{name: 'description', rows: '3'}
+          .form-group
+            %button.btn.btn-default{'data-dismiss' => 'modal'} Close
+            %button#edit_modal.btn.btn-primary{type: 'submit'} Save

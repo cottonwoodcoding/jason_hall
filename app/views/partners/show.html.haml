@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Type:
+  = @partner.type
+%p
+  %b Name:
+  = @partner.name
+%p
+  %b Phone:
+  = @partner.phone
+%p
+  %b Address:
+  = @partner.address
+%p
+  %b Url:
+  = @partner.url
+%p
+  %b Comment:
+  = @partner.comment
+%p
+  %b Img:
+  = @partner.img
+
+= link_to 'Edit', edit_partner_path(@partner)
+\|
+= link_to 'Back', partners_path

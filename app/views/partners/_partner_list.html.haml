@@ -1,0 +1,19 @@
+- partners.each do |p|
+  .partner-box
+    .partner-box-header
+      %h4
+        = p.name
+      - if admin_signed_in?
+        .box-controls.pull-right
+    - if p.phone
+      = fa_icon 'phone', text: p.phone
+      %br
+    - if p.address
+      = fa_icon 'thumb-tack', text: p.address
+      %br
+    - if p.url
+      = link_to p.url, target: '_blank' do
+        = fa_icon 'globe', text: p.url
+      %br
+    - if p.comment
+      = fa_icon 'comment', text: p.comment

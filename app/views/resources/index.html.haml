@@ -1,0 +1,22 @@
+#alert
+  - tab = params['tab'].nil? ? 'programs' : params['tab']
+%ul#resource_tabs.nav.nav-tabs{role: 'tablist'}
+  - first_active = (tab == 'programs') ? 'active' : 'not-active'
+  %li{role: 'presentation', class: first_active}
+    %a{'data-toggle' => 'tab', href: '#programs', role: 'tab'}
+      Loan Programs
+  - second_active = (tab == 'process') ? 'active' : 'not-active'
+  %li{role: 'presentation', class: second_active}
+    %a{'data-toggle' => 'tab', href: '#process', role: 'tab'}
+      Loan Process
+  - third_active = (tab == 'faq') ? 'active' : 'not-active'
+  %li{role: 'presentation', class: third_active}
+    %a{'data-toggle' => 'tab', href: '#faq', role: 'tab'}
+      FAQ
+.tab-content
+  #programs.tab-pane.in.fade{class: first_active}
+    = render partial: '/resources/loan_programs'
+  #process.tab-pane.in.fade{class: second_active}
+    = render partial: '/resources/loan_process'
+  #faq.tab-pane.in.fade{class: third_active}
+    = render partial: '/resources/loan_faq'

@@ -1,0 +1,21 @@
+.programs-container
+  #program_accordion.panel-group{"aria-multiselectable" => "true", :role => "tablist"}
+    - programs.each_with_index do |p, i|
+      - id = "loan_program_#{p.id}"
+      - collapse = "#{id}_collapse"
+      - display = i == 0 ? 'in' : 'out'
+      .panel.panel-default
+        .panel-heading.program-panel-heading{:role => "tab", id: id, 'data-toggle' => 'collapse', 'data-parent' => '#program_accordion', :href => "##{collapse}"}
+          %h4.panel-title
+            %a.loan-text{"aria-controls" => collapse, "aria-expanded" => "true", "data-parent" => "#program_accordion", "data-toggle" => "collapse", :href => "##{collapse}"}
+              = p.loan_type
+            - if admin_signed_in?
+              .admin-control.pull-right
+                = link_to '#edit_program_modal', class: 'edit-program', 'data-toggle' => 'modal' do
+                  = fa_icon 'edit', class: 'white right-20 pointer'
+                = link_to(delete_program_path(id: p.id), data: { confirm: "Are you sure you want to delete: #{p.loan_type}?" },class: 'delete-program', method: :delete) do
+                  = fa_icon 'trash', class: 'white right-20 pointer'
+        .panel-collapse.collapse{"aria-labelledby" => id, :role => "tabpanel", id: collapse, class: display}
+          .panel-body
+            .panel-text
+              = p.description

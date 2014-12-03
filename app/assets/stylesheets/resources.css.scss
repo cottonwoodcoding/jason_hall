@@ -1,0 +1,53 @@
+@import 'custom';
+
+#program_accordion, #process_accordion, #faq_accordion {
+  .panel {
+    background-color: transparent;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .panel-heading {
+    background-color: transparent;
+    text-align: center;
+    color: white;
+  }
+
+  .panel-body {
+    background-color: white;
+  }
+}
+
+#resource_tabs {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+}
+
+.nav-tabs > li > a {
+  color: black !important;
+}
+
+.nav-tabs > li.active > a {
+}
+
+.panel {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.panel-heading {
+  cursor: pointer;
+}
+
+.panel-group {
+  margin-top: 2%;
+}
+
+.panel-text {
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}

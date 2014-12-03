@@ -1,0 +1,21 @@
+#edit_program_modal.modal.fade{role: 'dialog', 'aria-labelledby' => 'edit_program_label', 'aria-hidden' => 'true'}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{type: 'button', 'data-dismiss' => 'modal'}
+          %span{'aria-hidden' => 'true'} &times;
+        %h4 Edit Program
+      .modal-body
+        #edit_modal_error
+        %form#edit_program_form{role: 'form', name: 'edit_program', action: 'edit_program', method: 'post'}
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          %input#edit_id.hidden{name: 'id'}
+          .form-group
+            %label.control-label{'for' => 'type'}  Loan Type
+            %input#type.form-control{name: 'loan_type', type: 'text', placeholder: 'i.e. Conventional, FHA, VA'}
+          .form-group
+            %label.control-label{'for' => 'description'}  Description
+            %textarea#description.form-control{name: 'description', rows: '3'}
+          .form-group
+            %button.btn.btn-default{'data-dismiss' => 'modal'} Close
+            %button#edit_modal.btn.btn-primary{type: 'submit'} Save
