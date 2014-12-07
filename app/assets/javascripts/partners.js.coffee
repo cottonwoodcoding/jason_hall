@@ -9,3 +9,10 @@ $ ->
   $(document).on 'click', '.partner-link a', ->
     $('.partner-link a').removeClass('underline')
     $(@).addClass('underline')
+    el = $(@)
+    $.ajax '/category',
+      type: 'GET'
+      data:
+        id: $(el).attr('data-id')
+      success: (data) ->
+        $('.partners-sub').html(data)

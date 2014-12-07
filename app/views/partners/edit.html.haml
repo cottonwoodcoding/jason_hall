@@ -1,0 +1,43 @@
+%h2.white.center Edit Partner
+%form.form-horizontal.new-partner-form.white{role: 'form', method: 'post', action: '/edit_partner'}
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  %input.hidden{name: 'partner_id', value: @partner.id}
+  .form-group
+    %label.control-label.col-sm-2{for: 'partner_type'} Partner Type
+    .col-sm-10
+      %select#partner_type.form-control{name: 'type'}
+        %option{value: 'new'} New Partner Type
+        - if @types
+          - @types.each do |t|
+            - selected = @partner.partner_type_id == t.id ? 'selected' : 'not-selected'
+            %option{value: t.id, "#{selected}" => 'true'}
+              = t.name
+  - hide = @partner.partner_type_id ? 'hidden' : 'shown'
+  .form-group.new-partner-type{class: hide}
+    %label.control-label.col-sm-2{for: 'new_partner_type'} New Partner Type
+    .col-sm-10
+      %input#new_partner_type.form-control{type: 'text', placeholder: 'Realtor', name: 'new_type'}
+  .form-group
+    %label.control-label.col-sm-2{for: 'name'} Name
+    .col-sm-10
+      %input#name.form-control{type: 'text', value: @partner.name, placeholder: 'Robbie Real Estate', name: 'partner_name'}
+  .form-group
+    %label.control-label.col-sm-2{for: 'phone'} Phone
+    .col-sm-10
+      %input#phone.form-control{type: 'tel', value: @partner.phone, placeholder: '(555) 555-1234', name: 'phone'}
+  .form-group
+    %label.control-label.col-sm-2{for: 'address'} Address
+    .col-sm-10
+      %input#address.form-control{type: 'text', value: @partner.address, placeholder: '1234 S. Industry St SLC UT 84123', name: 'address'}
+  .form-group
+    %label.control-label.col-sm-2{for: 'website'} Website
+    .col-sm-10
+      %input#website.form-control{type: 'url', value: @partner.url, placeholder: 'https://www.cottonwoodcoding.com', name: 'website'}
+  .form-group
+    %label.control-label.col-sm-2{for: 'comments'} Comments
+    .col-sm-10
+      %textarea#comments.form-control{type: 'text', rows: '5', name: 'comments'}
+        = @partner.comment
+  .form-group
+    .btn-container.partner-btn
+      %button.btn.btn-default.full-width.font-l.gradient{type: 'submit'} Submit

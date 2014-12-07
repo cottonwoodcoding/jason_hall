@@ -13,6 +13,33 @@ class PartnersController < ApplicationController
   end
 
   def edit
+    @types = PartnerType.all.order('name')
+  end
+
+  def destroy
+    Partner.find(params['id']).destroy
+    redirect_to partners_path
+  end
+
+  def edit_partner
+    type = params['type']
+    case type
+    when 'new'
+      partner_type = PartnerType.new
+      partner_type.name = params['new_type']
+      partner_type.save
+    else
+      partner_type = PartnerType.find(type)
+    end
+    partner = Partner.find(params['partner_id'])
+    partner.name = params['partner_name']
+    partner.phone = params['phone']
+    partner.address = params['address']
+    partner.url = params['website']
+    partner.comment = params['comments']
+    partner.save
+    partner_type.partners << partner
+    redirect_to partners_path
   end
 
   def new_partner
@@ -34,6 +61,12 @@ class PartnersController < ApplicationController
     partner.save
     partner_type.partners << partner
     redirect_to partners_path
+  end
+
+  def category
+    respond_to do |format|
+      format.html { render partial: 'partners/partner_list', locals: { partners: PartnerType.find(params['id']).partners.order('name') } }
+    end
   end
 
   private

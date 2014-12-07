@@ -11,6 +11,7 @@ JasonHall::Application.routes.draw do
   get "/home/index"
   get "/blog/new"
   get "/blog/comments"
+  get "/category", to: 'partners#category'
 
   post '/new_program', to: 'resources#new_program'
   post '/edit_program', to: 'resources#edit_program'
@@ -29,6 +30,7 @@ JasonHall::Application.routes.draw do
   post '/blog/delete_comment'
   post '/blog/delete_post'
   post '/new_partner', to: 'partners#new_partner'
+  post '/edit_partner', to: 'partners#edit_partner'
 
   delete '/delete_program', to: 'resources#delete_program'
   delete '/delete_process', to: 'resources#delete_process'
