@@ -1,30 +1,11 @@
 class BlogController < ApplicationController
   def index
-    tumblr = File.expand_path(File.dirname(__FILE__) + '../../../config/tumblr.yml')
-
-    if File.exists? tumblr
-      config = YAML.load_file(tumblr)
-      config.each { |key, value| ENV[key] || ENV[key] = value.to_s }
-    end
-
-    blog = ENV['TUMBLR_BLOG']
-    @recent_posts = tumblr_client.posts(blog, limit: 30)['posts']
-    @text = []
-    @videos = []
-    @photos = []
-    @recent_posts.each do |p|
-      case p['type']
-        when 'text'
-          @text << p
-        when 'photo'
-          @text << p
-        when 'video'
-          @text << p
-      end
-    end
     @articles = {}
-    @text.each do |post|
-      date = post['date'].to_datetime
+    @recent_posts = tumblr_client.posts(ENV['TUMBLR_BLOG'], limit: 30)['posts']
+    @recent_posts.each do |external_post|
+      post = Post.where(id: external_post['id']).first_or_initialize
+      date = external_post['date'].to_datetime
+      post.update_attributes!(title: external_post['title'], body: external_post['body'], post_date: date)
       id = post['id']
       title = post['title']
       key = date.strftime("%B %Y")
@@ -35,34 +16,47 @@ class BlogController < ApplicationController
       end
     end
     post_id = params['post']
-    @post = post_id.blank? ? @text.first : @text.find {|p| p['id'] == post_id.to_i }
+    @post = post_id.blank? ? Post.order('post_date').first : Post.find(post_id)
     @articles.each { |a, v| v.sort_by! { |hsh| hsh[:date] }.reverse!}
     @articles = Hash[@articles.sort_by { |k, v| k.to_datetime }]
   end
 
   def new
+    @post = Post.new
+  end
+
+  def edit
+    @post = Post.find(params['post'])
   end
 
   def edit_post
-    tumblr_client.edit(ENV['TUMBLR_BLOG'], id: params['blog_id'], title: params['title'], body: params['edit_body'])
+    blog_id = params['id']
+    post = params['post']
+    title = post['title']
+    body = post['body']
+    Post.find(blog_id).update_attributes!(title: title, body: body)
+    tumblr_client.edit(ENV['TUMBLR_BLOG'], id: blog_id, title: title, body: body)
     redirect_to blog_index_path
   end
 
   def new_post
-    tumblr_client.text(ENV['TUMBLR_BLOG'], title: params['title'], body: params['post_body'])
+    post = params['post']
+    title = post['title']
+    body = post['body']
+    post = tumblr_client.text(ENV['TUMBLR_BLOG'], title: title, body: body)
+    Post.create!(id: post['id'], title: title, body: body)
     redirect_to blog_index_path
   end
 
   def delete_post
-    result = tumblr_client.delete(ENV['TUMBLR_BLOG'], params['post_id'])
-    if result['id'] == params['post_id'].to_i
-      BlogComment.where(post_id: params['post_id'].to_i).destroy_all
-    end
+    post_id = params['post_id']
+    result = tumblr_client.delete(ENV['TUMBLR_BLOG'], post_id)
+    Post.find(post_id).destroy!
     redirect_to blog_index_path
   end
 
   def comments
-    @comments = BlogComment.where(post_id: params['post_id']).by_date
+    @comments = Post.find(params['post_id']).blog_comments.by_date
     render partial: '/blog/comments', locals: { comments: @comments }
   end
 
@@ -71,14 +65,13 @@ class BlogController < ApplicationController
     name = comment['name'].blank? ? 'Anonymous' : comment['name']
     id = comment['id']
     text = comment['comment']
-    c = BlogComment.new
-    c.name = name
-    c.comment = text
-    c.post_id = id
-    c.status = 'pending'
-    c.save
-    comments = BlogComment.where(post_id: id).by_date
-    render partial: '/blog/comments', locals: { comments: comments }
+    post = Post.find(comment['post_id'])
+    comment = BlogComment.new
+    comment.name = name
+    comment.comment = text
+    comment.status = 'pending'
+    post.blog_comments << comment
+    render partial: '/blog/comments', locals: { comments: post.blog_comments.by_date }
   end
 
   def approve_comment

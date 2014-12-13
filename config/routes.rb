@@ -24,7 +24,7 @@ JasonHall::Application.routes.draw do
   post '/blog/approve'
   post '/blog/new_comment'
   post '/blog/new_post'
-  post '/blog/edit_post'
+  patch '/blog/edit_post/:id', to: 'blog#edit_post'
   post '/blog/edit'
   post '/blog/approve_comment'
   post '/blog/delete_comment'

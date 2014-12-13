@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203025138) do
+ActiveRecord::Schema.define(version: 20141203063735) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -35,12 +35,15 @@ ActiveRecord::Schema.define(version: 20141203025138) do
     t.text     "comment"
     t.integer  "rating"
     t.integer  "likes"
-    t.integer  "post_id"
+    t.integer  "external_post_id"
     t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"
+    t.integer  "post_id"
   end
+
+  add_index "blog_comments", ["post_id"], name: "index_blog_comments_on_post_id"
 
   create_table "partner_types", force: true do |t|
     t.string   "name"
@@ -59,6 +62,14 @@ ActiveRecord::Schema.define(version: 20141203025138) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "partner_type_id"
+  end
+
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "post_date"
   end
 
   create_table "process_steps", force: true do |t|

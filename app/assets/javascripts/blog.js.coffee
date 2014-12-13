@@ -3,7 +3,7 @@ $ ->
     $(e.target).siblings().find('.caret-toggle').toggleClass('fa-caret-down fa-caret-right')
 
   blogReady = ->
-    if (window.location.href.indexOf('/blog') > -1)
+    if (window.location.href.indexOf('/blog/index') > -1)
       id = $('.blog-container h2').attr('data-post-id')
       $.ajax '/blog/comments',
         type: 'GET'

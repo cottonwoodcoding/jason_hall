@@ -25,7 +25,7 @@
                       .post{'data-post-id' => p[:id]}
                         = link_to blog_index_path(post: p[:id]), class: 'complimentary' do
                           = p[:title]
-    .blog-container.col-md-7.extra-bright-gradient
+    .blog-container.col-md-7.white-back
       - if admin_signed_in?
         = link_to blog_edit_path(post: @post), method: :post, class: 'black' do
           = fa_icon 'pencil', text: 'Edit Post', class: 'black'
@@ -39,6 +39,7 @@
         = fa_icon 'plus', text: 'Add Comment', class: 'white'
       %form#new_comment_form.hidden{role: 'form', action: '/blog/new_comment', method: 'POST'}
         = hidden_field_tag :authenticity_token, form_authenticity_token
+        = hidden_field_tag :post_id, @post.id
         .form-group
           %label.white{for: 'user_name'} Name:
           %input#user_name.form-control{type: 'text', name: 'name'}
