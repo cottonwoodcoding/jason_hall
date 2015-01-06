@@ -1,14 +1,13 @@
 JasonHall::Application.routes.draw do
 
   resources :partners
-
-  get "blog/index"
   devise_for :admins
 
   root 'home#index'
 
+  get "/blog", to: 'blog#index'
   get "/resources", to: 'resources#index'
-  get "/home/index"
+  get "/home", to: 'home#index'
   get "/blog/new"
   get "/blog/comments"
   get "/category", to: 'partners#category'
@@ -25,7 +24,6 @@ JasonHall::Application.routes.draw do
   post '/blog/approve'
   post '/blog/new_comment'
   post '/blog/new_post'
-  patch '/blog/edit_post/:id', to: 'blog#edit_post'
   post '/blog/edit'
   post '/blog/approve_comment'
   post '/blog/delete_comment'
@@ -33,6 +31,8 @@ JasonHall::Application.routes.draw do
   post '/new_partner', to: 'partners#new_partner'
   post '/edit_partner', to: 'partners#edit_partner'
   post '/send_feedback', to: 'contact#send_feedback'
+
+  patch '/blog/edit_post/:id', to: 'blog#edit_post'
 
   delete '/delete_program', to: 'resources#delete_program'
   delete '/delete_process', to: 'resources#delete_process'

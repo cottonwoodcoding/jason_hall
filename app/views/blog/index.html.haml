@@ -23,7 +23,7 @@
                   - posts.each do |p|
                     %li
                       .post{'data-post-id' => p[:id]}
-                        = link_to blog_index_path(post: p[:id]), class: 'complimentary' do
+                        = link_to blog_path(post: p[:id]), class: 'complimentary' do
                           = p[:title]
     .blog-container.col-md-7.white-back
       - if admin_signed_in?
