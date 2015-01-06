@@ -18,7 +18,7 @@ class BlogController < ApplicationController
     post_id = params['post']
     @post = post_id.blank? ? Post.order('post_date').first : Post.find(post_id)
     @articles.each { |a, v| v.sort_by! { |hsh| hsh[:date] }.reverse!}
-    @articles = Hash[@articles.sort_by { |k, v| k.to_datetime }]
+    @articles = Hash[@articles.sort_by { |k, v| k.to_datetime }.reverse! ]
   end
 
   def new
