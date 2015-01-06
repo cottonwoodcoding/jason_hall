@@ -10,6 +10,7 @@
       .col-sm-9
         = f.password_field :password, {autocomplete: "off", class: 'form-control'}
     .text-center
-      = f.submit "Sign in", {class: 'btn btn-sm btn-default'}
+      = link_to 'Back', :back, class: 'btn btn-default btn-sm'
+      = f.submit "Sign In", {class: 'btn btn-sm btn-default'}
       %hr
       = render "devise/shared/links"
