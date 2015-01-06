@@ -1,0 +1,51 @@
+.container
+  .row
+    .col-sm-12.col-lg-12
+      .panel
+        .panel-heading
+          %h3
+            %i.icon-map-marker.main-color.font-n
+            .font-m Location
+        .panel-body
+          #map{:style => "width: 100%; height: 200px;"}
+  %hr
+    .row
+      .col-sm-4.col-lg-4
+        .panel
+          .panel-heading
+            %h3
+              %i.icon-pushpin.main-color
+              .font-m Our Location
+          .panel-body
+            %address
+              %strong.font-m.underline Jason Hall Home Loans
+              %br
+                Address:
+                .font-n
+                %br
+                  %i.icon-phone-sign
+                  Toll Free Number:
+                  .font-n
+                %br
+                  %i.icon-phone-sign
+                  Local Number:
+                  .font-n
+      .col-12.col-lg-8
+        .panel
+          .panel-heading
+            %h3
+              %i.icon-envelope.main-color
+              .font-m Feel free to contact us
+          .panel-body
+            %form#feedbackForm{:role => "form", method: 'post', action: '/send_feedback'}
+              = hidden_field_tag :authenticity_token, form_authenticity_token
+              .form-group
+                %input#name.form-control{:name => "name", :placeholder => "Name", :type => "text", required: true}
+                  %span.help-block{:style => "display: none;"} Please enter your name.
+              .form-group
+                %input#email.form-control{:name => "email", :placeholder => "Email Address", :type => "email", required: true}
+                  %span.help-block{:style => "display: none;"} Please enter a valid e-mail address.
+              .form-group
+                %textarea#message.form-control{:cols => "100", :name => "message", :placeholder => "Message", :rows => "10", required: true}
+                %span.help-block{:style => "display: none;"} Please enter a message.
+              %button#feedbackSubmit.btn.btn-default.pull-right.font-l{:style => "display: block; margin-top: 10px;", :type => "submit"} Send Feedback

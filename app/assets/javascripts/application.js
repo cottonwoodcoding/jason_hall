@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require tinymce
 //= require bootstrap-sprockets
+//= require underscore
+//= require gmaps/google
 //= require_tree .

@@ -14,6 +14,9 @@ gem 'rack-cache'
 gem 'tumblr_client'
 gem 'simple_oauth', '~> 0.2.0'
 gem 'tinymce-rails'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+gem 'sendgrid'
 
 # Makes running your Rails app easier. Based on the ideas behind 12factor.net
 gem 'rails_12factor'
@@ -40,7 +43,7 @@ end
 
 group :development, :test do
    gem 'rspec-rails', '~> 3.0.0'
-   gem 'debugger'
+   gem 'byebug'
    gem 'pry'
    gem 'sqlite3'
 end
