@@ -1,5 +1,6 @@
 - if comments.present?
   - comments.each do |c|
+    - next unless admin_signed_in? || c.status != 'pending'
     .main-comment-container
       .comment.accent-5
         .inner-comment
