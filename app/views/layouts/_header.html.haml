@@ -24,11 +24,11 @@
         %li
           = link_to("Partners", partners_path, class: 'nav-item')
         %li
-          = link_to("Tools", '/', class: 'nav-item')
+          = link_to("Tools", tools_path, class: 'nav-item')
         %li
           = link_to("Reviews", '/', class: 'nav-item')
         %li
-          = link_to('/contact', class: 'nav-item') do
+          = link_to(contact_path, class: 'nav-item') do
             = fa_icon "envelope"
         %li.dropdown
           %a.dropdown-toggle{'data-toggle' => 'dropdown', href: '#'}

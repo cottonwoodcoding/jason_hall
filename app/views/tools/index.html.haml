@@ -1,0 +1,28 @@
+%h3.underline.text-center.white Amortization
+%hr
+.amortization.text-center.white
+  %form.form-horizontal.amortization_form{action: '/calculate_amortization', method: 'POST'}
+    = hidden_field_tag :authenticity_token, form_authenticity_token
+    .form-group
+      %label.col-sm-2.control-label{:for => "inputBorrowed"} Loan Amount?
+      .col-sm-9
+        %input#inputBorrowed.form-control{:placeholder => "Loan Amount", :type => "number", step: '.5', min: '5000', required: true, name: 'amount'}
+    .form-group
+      %label.col-sm-2.control-label{:for => "amortization_select"} Rate Type
+      .col-sm-9
+        %select.amortization_select.form-control{required: true, name: 'type'}
+          %option{value: 'fixed'} Fixed
+          %option{value: 'variable'} Variable
+    .form-group
+      %label.col-sm-2.control-label{:for => "inputLoanDuration"} Loan Duration
+      .col-sm-9
+        %input#inputLoanDuration.form-control{:placeholder => "Loan Duration In Years", :type => "number", step: 1, required: true, min: '1', name: 'duration'}
+    .amortization_content
+      = render(partial: 'fixed_content')
+    .form-group
+      .col-sm-11
+        %button.amortization_calculation_button.btn.btn-default.pull-right.font-l{type: 'submit'} Calculate
+        = link_to 'Back', :back, class: 'btn btn-default pull-right back-button'
+  %hr
+  .amortization_calculation_content
+

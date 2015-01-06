@@ -17,6 +17,7 @@ gem 'tinymce-rails'
 gem 'gmaps4rails'
 gem 'underscore-rails'
 gem 'sendgrid'
+gem 'finance'
 
 # Makes running your Rails app easier. Based on the ideas behind 12factor.net
 gem 'rails_12factor'

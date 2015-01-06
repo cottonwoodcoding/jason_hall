@@ -1,0 +1,13 @@
+.variable_content
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputStartingApr"} Starting APR
+    .col-sm-9
+      %input#inputStartingApr.form-control{:placeholder => "Annual Percentage Rate", :type => "number", step: '.01', required: true, min: '1.00', name: 'apr'}
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputPercentIncrease"} Percent Increase
+    .col-sm-9
+      %input#inputPercentIncrease.form-control{:placeholder => "Percent Increase", :type => "number", step: '.01', required: true, min: '0.01', name: 'percent_increase'}
+  .form-group
+    %label.col-sm-2.control-label{:for => "inputNumberYears"} Every
+    .col-sm-9
+      %input#inputNumberYears.form-control{:placeholder => "Number of Years", :type => "number", step: '1', required: true, min: '1', name: 'occurrence'}

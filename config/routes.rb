@@ -12,6 +12,8 @@ JasonHall::Application.routes.draw do
   get "/blog/comments"
   get "/category", to: 'partners#category'
   get '/contact', to: 'contact#index'
+  get '/tools', to: 'tools#index'
+  get '/amortization_content', to: 'tools#amortization_content'
 
   post '/new_program', to: 'resources#new_program'
   post '/edit_program', to: 'resources#edit_program'
@@ -31,6 +33,7 @@ JasonHall::Application.routes.draw do
   post '/new_partner', to: 'partners#new_partner'
   post '/edit_partner', to: 'partners#edit_partner'
   post '/send_feedback', to: 'contact#send_feedback'
+  post '/calculate_amortization', to: 'tools#calculate_amortization'
 
   patch '/blog/edit_post/:id', to: 'blog#edit_post'
 

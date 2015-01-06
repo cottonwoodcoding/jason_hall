@@ -33,6 +33,10 @@ $complimentary: white;
   color: black;
 }
 
+.hidden {
+  display: none;
+}
+
 .complimentary-bg {
   background-color: $complimentary !important;
 }

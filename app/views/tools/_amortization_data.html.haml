@@ -1,0 +1,37 @@
+%h3.text-center.underline Calculation Details
+- if is_variable
+  %form.form-horizontal.text-left
+    .form-group
+      %label.col-sm-2.control-label Variable Payments Over Time
+      - amortization.payments.uniq.each do |payment|
+        %label.col-sm-2.control-label
+        .col-sm-9
+          .form-control
+            = number_to_currency payment
+    .form-group
+      %label.col-sm-2.control-label Total Interest Paid
+      .col-sm-9
+        .form-control
+          = number_to_currency amortization.interest.sum
+    .form-group
+      %label.col-sm-2.control-label Total Cost Of Loan
+      .col-sm-9
+        .form-control
+          = number_to_currency amortization.payments.sum
+- else
+  %form.form-horizontal.text-left
+    .form-group
+      %label.col-sm-2.control-label Estimated Monthly Payment
+      .col-sm-9
+        .form-control
+          = number_to_currency amortization.payment
+    .form-group
+      %label.col-sm-2.control-label Total Interest Paid
+      .col-sm-9
+        .form-control
+          = number_to_currency amortization.interest.sum
+    .form-group
+      %label.col-sm-2.control-label Total Cost Of Loan
+      .col-sm-9
+        .form-control
+          = number_to_currency amortization.payments.sum
