@@ -36,7 +36,9 @@
       %textarea#comments.form-control{type: 'text', rows: '5', name: 'comments'}
   .form-group
     .btn-container.partner-btn
-      %button.btn.btn-default.full-width.font-l.gradient{type: 'submit'} Submit
+      .col-sm-12
+        %button.btn.btn-default.pull-right.font-l{type: 'submit'} Submit
+        = link_to 'Back', :back, class: 'btn btn-default pull-right back-button'
 
 
 
