@@ -10,18 +10,30 @@
               = fa_icon 'pencil', class: 'right-20 pointer'
             = link_to partner_path(p.id), method: :delete, confirm: 'Are you sure you want to delete this partner' do
               = fa_icon 'trash', class: 'pointer'
-      - if p.phone
+      - unless p.phone.empty?
         .partner-section
           = fa_icon 'phone', text: p.phone, class: 'partner-phone'
           %br
-      - if p.address
+      - unless p.street_address.empty?
         .partner-section
-          = fa_icon 'thumb-tack', text: p.address, class: 'partner-address'
+          = fa_icon 'thumb-tack', text: p.street_address, class: 'partner-address'
           %br
-      - if p.url
+      - unless p.city.empty?
+        .partner-section
+          = fa_icon 'fw', text: p.city, class: 'partner-city'
+          %br
+      - unless p.state.empty?
+        .partner-section
+          = fa_icon 'fw', text: p.state, class: 'partner-state'
+          %br
+      - unless p.zip.empty?
+        .partner-section
+          = fa_icon 'fw', text: p.zip, class: 'partner-zip'
+          %br
+      - unless p.url.empty?
         .partner-section
           = link_to p.url, target: '_blank' do
             = fa_icon 'globe', text: p.url, class: 'partner-url'
           %br
-      - if p.comment
+      - unless p.comment.empty?
         = fa_icon 'comment', text: p.comment, class: 'partner-comment'

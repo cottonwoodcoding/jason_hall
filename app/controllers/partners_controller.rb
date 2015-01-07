@@ -34,7 +34,10 @@ class PartnersController < ApplicationController
     partner = Partner.find(params['partner_id'])
     partner.name = params['partner_name']
     partner.phone = params['phone']
-    partner.address = params['address']
+    partner.street_address = params['street_address']
+    partner.city = params['city']
+    partner.state = params['state']
+    partner.zip = params['zip']
     partner.url = params['website']
     partner.comment = params['comments']
     partner.save
@@ -55,7 +58,10 @@ class PartnersController < ApplicationController
     partner = Partner.new
     partner.name = params['partner_name']
     partner.phone = params['phone']
-    partner.address = params['address']
+    partner.street_address = params['street_address']
+    partner.city = params['city']
+    partner.state = params['state']
+    partner.zip = params['zip']
     partner.url = params['website']
     partner.comment = params['comments']
     partner.save

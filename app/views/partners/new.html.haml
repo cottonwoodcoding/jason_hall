@@ -23,9 +23,21 @@
     .col-sm-10
       %input#phone.form-control{type: 'tel', placeholder: '(555) 555-1234', name: 'phone'}
   .form-group
-    %label.control-label.col-sm-2{for: 'address'} Address
+    %label.control-label.col-sm-2{for: 'street_address'} Street Address
     .col-sm-10
-      %input#address.form-control{type: 'text', placeholder: '1234 S. Industry St SLC UT 84123', name: 'address'}
+      %input#street_address.form-control{type: 'text', placeholder: '1234 S. Industry St', name: 'street_address'}
+  .form-group
+    %label.control-label.col-sm-2{for: 'city'} City
+    .col-sm-10
+      %input#city.form-control{type: 'text', placeholder: 'Salt Lake City', name: 'city'}
+  .form-group
+    %label.control-label.col-sm-2{for: 'state'} State
+    .col-sm-10
+      %input#state.form-control{type: 'text', placeholder: 'Utah', name: 'state'}
+  .form-group
+    %label.control-label.col-sm-2{for: 'zip'} Zip
+    .col-sm-10
+      %input#zip.form-control{type: 'text', placeholder: '84123', name: 'zip'}
   .form-group
     %label.control-label.col-sm-2{for: 'website'} Website
     .col-sm-10
