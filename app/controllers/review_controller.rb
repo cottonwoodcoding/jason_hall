@@ -5,25 +5,34 @@ class ReviewController < ApplicationController
     @first_main = @main_videos.first
   end
 
+  def add_review
+    r = Review.new
+    r.name = params['name']
+    r.comment = params['review']
+    r.approved = false
+    r.save
+    redirect_to home_path
+  end
+
   def text_review
     r = Review.new
     r.name = params['name']
     r.comment = params['review']
     r.approved = false
     r.save
-    redirect_to review_index_path
+    redirect_to reviews_path
   end
 
   def approve_text_review
     review = Review.find(params['id'])
     review.approved = true
     review.save
-    redirect_to review_index_path
+    redirect_to reviews_path
   end
 
   def remove_text_review
     Review.find(params['id']).destroy
-    redirect_to review_index_path
+    redirect_to reviews_path
   end
 
   def add_video
@@ -33,7 +42,7 @@ class ReviewController < ApplicationController
     vid.priority = last_id + 1
     vid.url = params['url']
     vid.save if params['url']
-    redirect_to review_index_path
+    redirect_to reviews_path
   end
 
   def video_review

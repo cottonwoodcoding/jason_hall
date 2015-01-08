@@ -1,10 +1,10 @@
 JasonHall::Application.routes.draw do
-  get "review/index"
   resources :partners
   devise_for :admins
 
   root 'home#index'
 
+  get "/reviews", to: 'review#index'
   get "/blog", to: 'blog#index'
   get "/resources", to: 'resources#index'
   get "/home", to: 'home#index'
@@ -40,6 +40,7 @@ JasonHall::Application.routes.draw do
   post '/remove_text_review', to: 'review#remove_text_review'
   post '/add_video', to: 'review#add_video'
   post '/delete_video', to: 'review#delete_video'
+  post '/add_review', to: 'review#add_review'
 
   patch '/blog/edit_post/:id', to: 'blog#edit_post'
 

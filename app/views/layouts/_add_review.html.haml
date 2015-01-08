@@ -1,0 +1,17 @@
+#add_reviews_modal.modal.fade
+  .modal-dialog
+    .modal-content
+      .modal-body
+        %h2 Add a review
+        %form#quick_review_form{type: 'form', action: '/add_review', method: 'post'}
+          = hidden_field_tag :authenticity_token, form_authenticity_token
+          .form-group
+            %label{for: 'user_name'} Name:
+            %input#user_name.form-control{type: 'text', name: 'name'}
+          .form-group
+            %label{for: 'quick_review'} Review:
+            %textarea#quick_review.form-control{rows: 3, name: 'review'}
+          .modal-footer
+            .pull-right
+              %button.btn.btn-default{type: 'button', 'data-dismiss' => 'modal'} Close
+              %button.btn.btn-primary{type: 'submit'} Submit

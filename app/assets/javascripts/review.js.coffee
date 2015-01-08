@@ -25,7 +25,7 @@ $ ->
       updateInfo('danger', 'Please provide a review')
 
   $('.vid-thumb').on 'click', (e) ->
-    key = $(@).attr('vid-key')
+    key = $(@).children().attr('vid-key')
     frame = $('iframe')
     frame[0].contentWindow.location.href = "https://www.youtube.com/embed/#{key}"
 
