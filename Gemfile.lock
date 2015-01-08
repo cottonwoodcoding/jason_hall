@@ -92,6 +92,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     minitest (4.7.5)
+    modernizr-rails (2.7.1)
     multi_json (1.10.1)
     multipart-post (2.0.0)
     oauth (0.4.7)
@@ -219,6 +220,7 @@ DEPENDENCIES
   heroku-deflater
   jbuilder (~> 1.2)
   jquery-rails
+  modernizr-rails
   pg
   protected_attributes
   pry

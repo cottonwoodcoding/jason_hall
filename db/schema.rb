@@ -98,4 +98,19 @@ ActiveRecord::Schema.define(version: 20150106235822) do
     t.datetime "updated_at"
   end
 
+  create_table "reviews", force: true do |t|
+    t.string   "name"
+    t.text     "comment"
+    t.boolean  "approved"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "videos", force: true do |t|
+    t.string   "url"
+    t.integer  "priority"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
 end

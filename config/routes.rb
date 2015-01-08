@@ -1,5 +1,5 @@
 JasonHall::Application.routes.draw do
-
+  get "review/index"
   resources :partners
   devise_for :admins
 
@@ -34,6 +34,12 @@ JasonHall::Application.routes.draw do
   post '/edit_partner', to: 'partners#edit_partner'
   post '/send_feedback', to: 'contact#send_feedback'
   post '/calculate_amortization', to: 'tools#calculate_amortization'
+  post '/text_review', to: 'review#text_review'
+  post '/video_review', to: 'review#video_review'
+  post '/approve_text_review', to: 'review#approve_text_review'
+  post '/remove_text_review', to: 'review#remove_text_review'
+  post '/add_video', to: 'review#add_video'
+  post '/delete_video', to: 'review#delete_video'
 
   patch '/blog/edit_post/:id', to: 'blog#edit_post'
 

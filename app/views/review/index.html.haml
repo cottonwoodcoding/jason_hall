@@ -1,0 +1,57 @@
+#review_alerts
+.review-video-section
+  - if @first_main
+    - key = @first_main.url.split("/").last
+  - else
+    - key = 'unkown'
+  %iframe.col-lg-12.col-md-12.col-sm-12.col-xs-12{width: '640px', height: '390px', src: "//www.youtube.com/embed/#{key}", 'frameborder' => '0', 'allowfullscreen' => 'true'}
+  .image-row.col-lg-12.col-md-12.col-sm-12.col-xs-12
+    %ul#carousel.elastislide-list
+      - if @main_videos.any?
+        - @main_videos.each do |vid|
+          - key = vid.url.split("/").last
+          %li
+            %a.vid-thumb.pointer{href: '#'}
+              %img{src: "//i1.ytimg.com/vi/#{key}/default.jpg", 'vid-key' => key}
+          %li.trash-item
+            - if admin_signed_in?
+              = fa_icon 'trash', class: 'white pointer', data: { key: key }
+    - if admin_signed_in?
+      .add-main-video.add-video.pointer.white
+        = fa_icon 'plus', text: 'Add Video Review', class: 'pointer white'
+.clearfix
+%hr
+.reviews
+  .text-reviews.review-container.center
+    %a#new_text_review.center.white{href: '#'}
+      = fa_icon 'plus', text: 'Add a review', class: 'white'
+    %form#text_review_form.hidden{ role: 'form', action: '/text_review', 'method' => 'POST'}
+      = hidden_field_tag :authenticity_token, form_authenticity_token
+      .form-group
+        %label.white{for: 'user_name'} Name:
+        %input#reviewer_name.form-control{type: 'text', name: 'name'}
+      .form-group
+        %label.white{for: 'review'} Review:
+        %textarea#review.form-control{rows: 3, name: 'review'}
+      %button.btn{type: 'submit'} Submit
+    - if @reviews.present?
+      - @reviews.each do |r|
+        - if admin_signed_in? || r.approved == true
+          .main-comment-container
+            .comment.accent-5
+              .inner-comment
+                %h5.accent-5
+                  = r.comment
+                %em
+                  = "-#{r.name}"
+            - if admin_signed_in?
+              .review-controls.pull-right{'data-comment-id' => r.id}
+                - if r.approved != true
+                  = link_to approve_text_review_path(id: r.id), method: :post do
+                    = fa_icon 'check', class: 'white'
+                = link_to remove_text_review_path(id: r.id), method: :post do
+                  = fa_icon 'trash', class: 'white'
+              .clearfix
+        - else
+          - next
+= render partial: '/layouts/add_video'
