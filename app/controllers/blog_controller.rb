@@ -19,6 +19,11 @@ class BlogController < ApplicationController
     @post = post_id.blank? ? Post.order('post_date').last : Post.find(post_id)
     @articles.each { |a, v| v.sort_by! { |hsh| hsh[:date] }}
     @articles = Hash[@articles.sort_by { |k, v| k.to_datetime }.reverse! ]
+     feed = Feedjira::Feed.fetch_and_parse("http://davematthews.tumblr.com/rss")
+    @entries = []
+    feed.entries.each do |e|
+      @entries << {title: e.title, content: e.summary.html_safe}
+    end
   end
 
   def new

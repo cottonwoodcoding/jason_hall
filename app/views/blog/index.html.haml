@@ -25,7 +25,20 @@
                       .post{'data-post-id' => p[:id]}
                         = link_to blog_path(post: p[:id]), class: 'complimentary' do
                           = p[:title]
-    .blog-container.col-md-7.white-back
+    .col-md-7.white-back.blog-section.bottom-thirty
+      .feed.scrollable.hidden-xs
+        - if @entries.any?
+          .text-center
+            %span Live Feed
+          - @entries.each do |e|
+            %h5.white
+              = e[:title]
+            .content-section.white
+              = e[:content]
+            %hr
+      .col-xs-12
+        %hr
+      .blog-container.white-back
       - if admin_signed_in?
         = link_to blog_edit_path(post: @post), method: :post, class: 'black' do
           = fa_icon 'pencil', text: 'Edit Post', class: 'black'

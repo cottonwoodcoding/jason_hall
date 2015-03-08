@@ -21,8 +21,8 @@
         = fa_icon 'plus', text: 'Add Video Review', class: 'pointer white'
 .clearfix
 %hr
-.reviews
-  .text-reviews.review-container.center
+.reviews.bottom-thirty
+  .text-reviews.review-container.center.bottom-thirty
     %a#new_text_review.center.white{href: '#'}
       = fa_icon 'plus', text: 'Add a review', class: 'white'
     %form#text_review_form.hidden{ role: 'form', action: '/text_review', 'method' => 'POST'}
@@ -38,7 +38,7 @@
       - @reviews.each do |r|
         - if admin_signed_in? || r.approved == true
           .main-comment-container
-            .comment.accent-5
+            .comment.accent-5.bottom-five
               .inner-comment
                 %h5.accent-5
                   = r.comment

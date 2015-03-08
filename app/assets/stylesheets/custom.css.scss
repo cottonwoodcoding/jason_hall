@@ -224,3 +224,32 @@ body {
 .underline {
   text-decoration: underline;
 }
+
+.small-print {
+  font-size: 8px;
+  color: white;
+}
+
+.company-logo {
+  width: 90px;
+}
+
+#footer {
+  background-color: black;
+  height: 40px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  margin-top: 5px;
+}
+
+.text-1w {
+  letter-spacing: 1px;
+}
+
+.bottom-thirty {
+  margin-bottom: 30px;
+}

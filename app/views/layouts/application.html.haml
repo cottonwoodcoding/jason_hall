@@ -12,4 +12,16 @@
       = render :partial => "shared/bflash"
       = render :partial => "layouts/header"
     = yield
+  %footer.footer
+    #footer.container
+      .footer-content
+        .col-xs-2.col-xs-offset-1
+          .text-center
+            %h6.white NMLS# 297434
+        .col-xs-2.col-xs-offset-2
+          .text-center
+            = image_tag 'umlc.png', class: 'company-logo'
+        .col-xs-2.col-xs-offset-2
+          .text-center
+            %h6.white Company NMLS# 149160
 

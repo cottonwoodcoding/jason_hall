@@ -1,37 +1,40 @@
-%h3.text-center.underline Calculation Details
-- if is_variable
-  %form.form-horizontal.text-left
-    .form-group
-      %label.col-sm-2.control-label Variable Payments Over Time
-      - amortization.payments.uniq.each do |payment|
-        %label.col-sm-2.control-label
-        .col-sm-9
-          .form-control
-            = number_to_currency payment
-    .form-group
-      %label.col-sm-2.control-label Total Interest Paid
-      .col-sm-9
-        .form-control
-          = number_to_currency amortization.interest.sum
-    .form-group
-      %label.col-sm-2.control-label Total Cost Of Loan
-      .col-sm-9
-        .form-control
-          = number_to_currency amortization.payments.sum
-- else
-  %form.form-horizontal.text-left
-    .form-group
-      %label.col-sm-2.control-label Estimated Monthly Payment
-      .col-sm-9
-        .form-control
-          = number_to_currency amortization.payment
-    .form-group
-      %label.col-sm-2.control-label Total Interest Paid
-      .col-sm-9
-        .form-control
-          = number_to_currency amortization.interest.sum
-    .form-group
-      %label.col-sm-2.control-label Total Cost Of Loan
-      .col-sm-9
-        .form-control
-          = number_to_currency amortization.payments.sum
+.col-xs-12.col-md-4.col-md-offset-1
+  .text-center.white
+    %h4 Monthly Payment
+  .col-xs-12
+    %label.white Estimated Monthly Payment (Pricipal & Interest)
+    .form-control
+      = number_to_currency amortization.payment
+  - if taxes > 0 || insurance > 0
+    .col-xs-12
+      %label.white Estimated Monthly Payment With Taxes & Insurance
+      .form-control
+        = number_to_currency (amortization.payment - taxes - insurance)
+  .col-xs-12
+    %label.white Total Interest Paid
+    .form-control
+      = number_to_currency amortization.interest.sum
+  .col-xs-12.bottom-thirty
+    %label.white Cost Of Loan
+    .form-control.bottom-thirty
+      = number_to_currency amortization.payments.sum
+.col-xs-12.col-md-6
+  - if @amortization.any?
+    .col-xs-12.col-md5
+      .amortization-schedule.white
+        %table.table.table-condenssed.table-hover.table-stripped.bottom-thirty
+          %legend.white Amortization Schedule In Years
+          %thead
+            %th Year #
+            %th Principal
+            %th Interest
+          %tbody
+            - @amortization.each_with_index do |val, i|
+              %tr
+                %td
+                  = i + 1
+                %td
+                  = "$#{val[:principal]}"
+                %td
+                  = "$#{val[:interest]}"
+

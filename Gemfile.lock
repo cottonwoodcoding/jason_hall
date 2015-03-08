@@ -45,6 +45,7 @@ GEM
       execjs
     coffee-script-source (1.8.0)
     columnize (0.9.0)
+    curb (0.8.6)
     debugger-linecache (1.2.0)
     devise (3.4.1)
       bcrypt (~> 3.0)
@@ -60,6 +61,10 @@ GEM
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.9.1)
       faraday (>= 0.7.4, < 0.10)
+    feedjira (1.6.0)
+      curb (~> 0.8)
+      loofah (~> 2.0)
+      sax-machine (~> 1.0)
     finance (2.0.0)
       flt (>= 1.3.0)
     flt (1.4.3)
@@ -86,15 +91,20 @@ GEM
     json (1.8.1)
     kgio (2.9.2)
     libv8 (3.16.14.7)
+    loofah (2.0.1)
+      nokogiri (>= 1.5.9)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_portile (0.6.2)
     minitest (4.7.5)
     modernizr-rails (2.7.1)
     multi_json (1.10.1)
     multipart-post (2.0.0)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
     oauth (0.4.7)
     orm_adapter (0.5.0)
     pg (0.17.1)
@@ -157,6 +167,7 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+    sax-machine (1.2.0)
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
@@ -213,6 +224,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.0.0)
   devise
+  feedjira
   finance
   font-awesome-rails
   gmaps4rails

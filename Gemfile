@@ -19,6 +19,7 @@ gem 'underscore-rails'
 gem 'sendgrid'
 gem 'finance'
 gem 'modernizr-rails'
+gem 'feedjira'
 
 # Makes running your Rails app easier. Based on the ideas behind 12factor.net
 gem 'rails_12factor'

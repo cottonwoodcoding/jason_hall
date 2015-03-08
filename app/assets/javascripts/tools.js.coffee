@@ -30,3 +30,13 @@ $ ->
         $button.html('Calculate')
         alert('Something went wrong while calculating your amortization. Please try again or contact us.')
 
+  $('#inputBorrowed').bind 'keypress keyup blur', ->
+    loanAmount = parseFloat($(@).val())
+    if $(@).val() == ''
+      $('#taxes').val('')
+      $('#insurance').val('')
+    else
+      taxes = loanAmount * .007
+      ins = loanAmount * .002
+      $('#taxes').val(taxes.toFixed(2))
+      $('#insurance').val(ins.toFixed(2))

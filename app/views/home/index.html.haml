@@ -1,18 +1,39 @@
 .home-container
-.bubble.pull-right
-  .ribbon
-    #action_item_1.rectangle
-      .rectangle-link.center
-        %a.content.black{href: 'http://www.jasonhall.prequalutah.com', target: '_blank'} Pre-Qualification
-    #triangle_1.triangle-l
-  .ribbon
-    #action_item_2.rectangle
-      .rectangle-link.center
-        %a.content.black{href: '#'} Write A Review
-    #triangle_2.triangle-l
-  .ribbon
-    #action_item_3.rectangle
-      .rectangle-link.center
-        %a.content.black{href: '/contact'} Contact
-    #triangle_3.triangle-l
+.image-section
+  .bubble.pull-right
+    .ribbon
+      #action_item_1.rectangle
+        .rectangle-link.center
+          %a.content.black{href: 'http://www.jasonhall.prequalutah.com', target: '_blank'} Pre-Qualification
+      #triangle_1.triangle-l
+    .ribbon
+      #action_item_2.rectangle
+        .rectangle-link.center
+          %a.content.black{href: '#'} Write A Review
+      #triangle_2.triangle-l
+    .ribbon
+      #action_item_3.rectangle
+        .rectangle-link.center
+          %a.content.black{href: '/contact'} Contact
+      #triangle_3.triangle-l
+.icon-section.col-xs-12
+  %a.col-xs-3.col-xs-offset-1{href: '/resources'}
+    .go-to
+      .icon-surround.col-xs-offset-1.pointer
+        = fa_icon 'puzzle-piece', class: 'pointer'
+      %p.white.icon-text.pointer.pointer
+        Understand The Process
+  %a.col-xs-3.col-xs-offset-1{href: '/tools'}
+    .go-to
+      .icon-surround.col-xs-offset-1.pointer
+        = fa_icon 'calculator', class: 'pointer'
+      %p.white.icon-text.pointer.text-1w
+        Calculate The Savings
+  %a.col-xs-3.col-xs-offset-1{href: '/blog'}
+    .go-to
+      .icon-surround.pointer.col-xs-offset-1
+        = fa_icon 'comments', class: 'pointer'
+      %p.white.icon-text.pointer
+        Follow The Conversation
+
 = render partial: '/layouts/add_review'
