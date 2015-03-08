@@ -4,27 +4,26 @@
     = link_to new_partner_path, class: 'white' do
       = fa_icon 'plus', text: 'Add New Partner'
 .partners
-  .partner-types.pull-left
-    %h4.white Partner Categories
-    %hr
-    .categories
-      %ul.list-unstyled
-        - if @partner_types
-          - first = true
-          - @partner_types.each do |t|
-            - next if t.partners.blank?
-            - if first
-              - underline = 'underline'
-              - partners = t.partners.order('name')
-            - else
-              - underline = 'no-style'
-            %li.partner-link
-              %a.white{href: '#', 'data-id' => t.id, class: underline}
-                = t.name
-            - first = false
-  .partners-sub
-    - if @partner_types.any? && Partner.count > 0
-      = render partial: 'partners/partner_list', locals: { partners: partners }
-
-
-
+  .col-xs-12.col-md-3
+    .partner-types
+      %h4.white Partner Categories
+      %hr
+      .categories
+        %ul.list-unstyled
+          - if @partner_types
+            - first = true
+            - @partner_types.each do |t|
+              - next if t.partners.blank?
+              - if first
+                - underline = 'underline'
+                - partners = t.partners.order('name')
+              - else
+                - underline = 'no-style'
+              %li.partner-link
+                %a.white{href: '#', 'data-id' => t.id, class: underline}
+                  = t.name
+              - first = false
+  .col-xs-12.col-md-7.col-md-offset-1
+    .partners-sub
+      - if @partner_types.any? && Partner.count > 0
+        = render partial: 'partners/partner_list', locals: { partners: partners }
